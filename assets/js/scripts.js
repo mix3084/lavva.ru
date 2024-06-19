@@ -10,6 +10,8 @@ const App = {
 		$('#profileForm').on('submit', this.updateProfile);
 		$('#passwordForm').on('submit', this.updatePassword);
 		$(document).on('submit', '.editUserForm', this.updateUserCourses);
+		$(document).on('submit', '#addCourseForm', this.addCourse);
+		$(document).on('click', '.delete-course', this.deleteCourse);
 	},
 	
 	handleLogin: function(e) {
@@ -174,6 +176,56 @@ const App = {
 				}
 			});
 		}
+	},
+
+    addCourse: function(e) {
+		e.preventDefault();
+		const courseName = $('#name').val();
+
+		$.ajax({
+			url: '/ajax/courses.php',
+			type: 'POST',
+			data: {
+				action: 'add_course',
+				name: courseName
+			},
+			dataType: 'json',
+			success: function(response) {
+				if (response.success) {
+					$('#coursesList').append(`
+						<li class="list-group-item d-flex justify-content-between align-items-center" data-id="${response.id}">
+							${response.name}
+							<button class="btn btn-danger btn-sm delete-course">Удалить</button>
+						</li>
+					`);
+					$('#name').val('');
+				} else {
+					alert(response.message);
+				}
+			}
+		});
+	},
+
+    deleteCourse: function() {
+		const listItem = $(this).closest('li');
+		const courseId = listItem.data('id');
+
+		$.ajax({
+			url: '/ajax/courses.php',
+			type: 'POST',
+			data: {
+				action: 'delete_course',
+				course_id: courseId
+			},
+			dataType: 'json',
+			success: function(response) {
+				if (response.success) {
+					listItem.remove();
+				} else {
+					alert(response.message);
+				}
+			}
+		});
 	},
 	
 	updateUserCourses: function(e) {

@@ -81,7 +81,7 @@ if ($user['group'] == 1) {
 
 <h2>Лекции</h2>
 <?php if ($user['group'] == 1): ?>
-	<form method="post" enctype="multipart/form-data">
+	<form method="post" enctype="multipart/form-data" class="mb-3">
 		<div class="mb-3">
 			<label for="name" class="form-label">Название лекции</label>
 			<input type="text" class="form-control" id="name" name="name" required>
