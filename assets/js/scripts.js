@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#loginForm').on('submit', function(e) {
         e.preventDefault();
-        let email = $('#loginEmail').val();
+        let loginInput  = $('#loginInput').val();
         let password = $('#loginPassword').val();
         
         $.ajax({
@@ -9,8 +9,8 @@ $(document).ready(function() {
             type: 'POST',
             data: {
                 action: 'login',
-                email: email,
-                password: password
+                loginInput,
+                password
             },
             success: function(response) {
                 $('#loginMessage').text(response.message);
@@ -48,7 +48,7 @@ $(document).ready(function() {
     $('#profileForm').on('submit', function(e) {
 		e.preventDefault();
 		$.ajax({
-			url: 'profile.php',
+			url: '/client/profile.php',
 			type: 'POST',
 			data: {
 				action: 'update_profile',
@@ -65,6 +65,7 @@ $(document).ready(function() {
 
 	$('#passwordForm').on('submit', function(e) {
 		e.preventDefault();
+		let oldPassword = $('#old_password').val();
 		let newPassword = $('#new_password').val();
 		let confirmPassword = $('#confirm_password').val();
 
@@ -76,10 +77,11 @@ $(document).ready(function() {
 		}
 
 		$.ajax({
-			url: 'profile.php',
+			url: '/client/profile.php',
 			type: 'POST',
 			data: {
 				action: 'update_password',
+				old_password: oldPassword,
 				new_password: newPassword,
 				confirm_password: confirmPassword
 			},
@@ -88,6 +90,8 @@ $(document).ready(function() {
 				let message = $('#passwordMessage');
 				message.text(response.message);
 				message.removeClass('alert-success alert-danger').addClass(response.success ? 'alert alert-success' : 'alert alert-danger');
+                
+                if (response.success) $(e.currentTarget)[0].reset();
 			}
 		});
 	});

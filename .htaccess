@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Обработка 404 ошибки
+ErrorDocument 404 /404.php

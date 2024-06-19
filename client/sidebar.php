@@ -25,47 +25,39 @@
 	<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary">
 		<ul class="nav nav-pills flex-column mb-auto">
 			<li class="nav-item">
-				<a href="?page=profile" class="nav-link <?php echo isActive('?page=profile'); ?>" aria-current="page">
+				<a href="/client/" class="nav-link <?php echo isActive('/client/'); ?>" aria-current="page">
 					<svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
 					Профиль
 				</a>
 			</li>
 			<?php if ($user['group'] == 1): // Admin ?>
 				<li>
-					<a href="?page=users" class="nav-link <?php echo isActive('?page=users'); ?>">
+					<a href="/client/?page=users" class="nav-link <?php echo isActive('/client/?page=users'); ?>">
 						<svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
 						Пользователи
 					</a>
 				</li>
 				<li>
-					<a href="?page=courses" class="nav-link <?php echo isActive('?page=courses'); ?>">
+					<a href="/client/?page=courses" class="nav-link <?php echo isActive('/client/?page=courses'); ?>">
 						<svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
 						Курсы
 					</a>
 				</li>
-				<li>
-					<a href="?page=lessons" class="nav-link <?php echo isActive('?page=lessons'); ?>">
-						<svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-						Лекции
-					</a>
-				</li>
-			<?php else: ?>
-				<li>
-					<a href="?page=my_courses" class="nav-link <?php echo isActive('?page=my_courses'); ?>">
-						<svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-						Мои курсы
-					</a>
-				</li>
 			<?php endif; ?>
+			<li>
+				<a href="/client/?page=lessons" class="nav-link <?php echo isActive('/client/?page=lessons'); ?>">
+					<svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+					Лекции
+				</a>
+			</li>
 		</ul>
 		<hr>
 		<div class="dropdown">
 			<a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 				<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-				<strong><?php echo htmlspecialchars($user['name']); ?></strong>
+				<strong class="text-wrap"><?php echo htmlspecialchars($user['name']); ?></strong>
 			</a>
 			<ul class="dropdown-menu text-small shadow">
-				<li><a class="dropdown-item" href="?page=profile">Профиль</a></li>
 				<li><a class="dropdown-item" href="logout.php">Выйти</a></li>
 			</ul>
 		</div>

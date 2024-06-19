@@ -4,8 +4,7 @@ $description = "ХУЙНЯ.";
 
 include '../header.php';
 session_start();
-$user = $_SESSION['user'];
-if (!isset($user)) : ?>
+if (!isset($_SESSION['user'])) : ?>
 <!-- шапка Start -->
 <div class="container-fluid bg-primary py-5 mb-5 page-header">
     <div class="container py-5">
@@ -30,8 +29,8 @@ if (!isset($user)) : ?>
                 <h3>Вход</h3>
                 <form id="loginForm">
                     <div class="mb-3">
-                        <label for="loginEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="loginEmail" required>
+                        <label for="loginInput" class="form-label">Email или Логин</label>
+                        <input type="text" class="form-control" id="loginInput" required>
                     </div>
                     <div class="mb-3">
                         <label for="loginPassword" class="form-label">Пароль</label>
@@ -67,7 +66,10 @@ if (!isset($user)) : ?>
         </div>
     </div>
 </div>
-<? else : include 'sidebar.php';?>
+<? else : 
+    $user = $_SESSION['user'];
+    include 'sidebar.php';
+?>
 <div class="content-page">
 	<div class="content">
 		<div class="container-fluid p-3">

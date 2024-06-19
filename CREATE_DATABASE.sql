@@ -57,7 +57,7 @@ INSERT INTO courses (name) VALUES
 
 -- Вставка данных в таблицу lessons
 INSERT INTO lessons (course_id, name, file_path) VALUES
-(1, 'Lesson 1 for Course 1', 'path/to/file1.pdf'),
-(1, 'Lesson 2 for Course 1', 'path/to/file2.pdf'),
-(2, 'Lesson 1 for Course 2', 'path/to/file3.pdf'),
-(2, 'Lesson 2 for Course 2', 'path/to/file4.pdf');
+(1, 'Lesson 1 for Course 1', '/uploads/521f0cf09bc65babd9584b6e8ac6b6f5.mp4'),
+(1, 'Lesson 2 for Course 1', '/uploads/434d7a93a0be916f053567ea6c72a176.docx'),
+(2, 'Lesson 1 for Course 2', '/uploads/file3.pdf'),
+(2, 'Lesson 2 for Course 2', '/uploads/file4.pdf');

@@ -1,6 +1,6 @@
 <?php
-	$title = "404 page not found";
-	$description = "ХУЙНЯ.";
+	$title = "404 - Страница не найдена";
+	$description = "Извините, страница не найдена.";
 	include 'header.php';
 ?>
 <!-- шапка Start -->

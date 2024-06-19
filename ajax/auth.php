@@ -7,18 +7,18 @@ header('Content-Type: application/json');
 $action = $_POST['action'];
 
 if ($action == 'login') {
-	$email = $_POST['email'];
+	$loginInput = $_POST['loginInput'];
 	$password = md5($_POST['password']); // Использование MD5 для хэширования паролей
 
-	$stmt = $pdo->prepare('SELECT * FROM users WHERE mail = ? AND password = ?');
-	$stmt->execute([$email, $password]);
+	$stmt = $pdo->prepare('SELECT * FROM users WHERE (mail = ? OR login = ?) AND password = ?');
+	$stmt->execute([$loginInput, $loginInput, $password]);
 	$user = $stmt->fetch();
 
 	if ($user) {
-		echo json_encode(['success' => true, 'message' => 'Вход выполнен успешно.']);
 		$_SESSION['user'] = $user;
+		echo json_encode(['success' => true, 'message' => 'Вход выполнен успешно.']);
 	} else {
-		echo json_encode(['success' => false, 'message' => 'Неверный email или пароль.']);
+		echo json_encode(['success' => false, 'message' => 'Неверный email/логин или пароль.']);
 	}
 } elseif ($action == 'register') {
 	$name = $_POST['name'];
