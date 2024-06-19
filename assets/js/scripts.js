@@ -12,6 +12,8 @@ const App = {
 		$(document).on('submit', '.editUserForm', this.updateUserCourses);
 		$(document).on('submit', '#addCourseForm', this.addCourse);
 		$(document).on('click', '.delete-course', this.deleteCourse);
+		$('#addLessonForm').on('submit', this.addLesson.bind(this));
+        $(document).on('click', '.delete-lesson', this.deleteLesson.bind(this));
 	},
 	
 	handleLogin: function(e) {
@@ -256,6 +258,85 @@ const App = {
 			}
 		});
 	},
+
+    checkLessons: function() {
+        const html = '<li class="list-group-item justify-content-between align-items-center js-lessons-not">Лекций нет</li>';
+
+		if (!$('.list-group li[data-id]').length) {
+			$('.list-group').append(html)
+		} else {
+			$('.js-lessons-not').remove();
+		}
+	},
+
+    addLesson: function(e) {
+        e.preventDefault();
+        const formData = new FormData($('#addLessonForm')[0]);
+        formData.append('action', 'add_lesson');
+
+        $.ajax({
+            url: '/ajax/lessons.php',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    const lesson = response.lesson;
+                    const lessonItem = `
+                        <li class="list-group-item d-flex justify-content-between align-items-center" data-id="${lesson.id}">
+                            ${lesson.name} (${lesson.course_name})
+                            <a href="${lesson.file_path}" class="btn btn-info btn-sm ms-auto" download="${App.sanitizeFileName(lesson.name)}.${lesson.file_extension}">Скачать</a>
+                            <button class="btn btn-danger btn-sm ms-2 delete-lesson" data-id="${lesson.id}">Удалить</button>
+                        </li>
+                    `;
+                    $('.list-group').append(lessonItem);
+                    $('#addLessonForm')[0].reset();
+                    App.checkLessons();
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert('Ошибка при добавлении лекции.');
+            }
+        });
+    },
+    
+    deleteLesson: function(e) {
+        const lessonId = $(e.target).data('id');
+
+        $.ajax({
+            url: '/ajax/lessons.php',
+            type: 'POST',
+            data: {
+                action: 'delete_lesson',
+                lesson_id: lessonId
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    $(`li[data-id="${lessonId}"]`).remove();
+                    App.checkLessons();
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert('Ошибка при удалении лекции.');
+            }
+        });
+    },
+
+    sanitizeFileName: function(filename, maxLength = 100) {
+        filename = filename.replace(/[^A-Za-zА-Яа-я0-9\- ]/g, '');
+        if (filename.length > maxLength) {
+            filename = filename.substring(0, maxLength);
+        }
+        filename = filename.trim().replace(/\s+/g, '_');
+        return filename;
+    },
 	
 	coursesMap: {}
 };
