@@ -1,4 +1,18 @@
 <?php
+require_once '../db.php';
+session_start();
+$page = $_GET['page'] ?? null;
+
+if ($page === 'lessons') {
+    // Проверка, авторизован ли пользователь
+    if (!isset($_SESSION['user'])) {
+        header('Location: /client/');
+        exit();
+    }
+} else {
+    header('Location: /client/');
+    exit();
+}
 function sanitizeFileName($filename, $maxLength = 100) {
 	// Удаляем все запрещенные символы, поддерживаем кириллицу
 	$filename = preg_replace('/[^A-Za-zА-Яа-я0-9\- ]/u', '', $filename);
@@ -11,16 +25,6 @@ function sanitizeFileName($filename, $maxLength = 100) {
 	// Заменяем пробелы на подчеркивания
 	$filename = str_replace(' ', '_', $filename);
 	return $filename;
-}
-
-
-require_once '../db.php';
-session_start();
-
-// Проверка, авторизован ли пользователь
-if (!isset($_SESSION['user'])) {
-	header('Location: /client/');
-	exit();
 }
 
 $user = $_SESSION['user'];
@@ -97,8 +101,7 @@ if ($user['group'] == 1) {
 		<button type="submit" name="add_lesson" class="btn btn-primary">Добавить лекцию</button>
 	</form>
 <?php endif; ?>
-
-<h3 class="mt-4">Список лекций</h3>
+<? if ($lessons) :?>
 <ul class="list-group">
 	<?php foreach ($lessons as $lesson): ?>
 		<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -113,3 +116,6 @@ if ($user['group'] == 1) {
 		</li>
 	<?php endforeach; ?>
 </ul>
+<? else :?>
+<p>Лекций не найдено, обратитесь к Администратору</p>
+<?endif;?>

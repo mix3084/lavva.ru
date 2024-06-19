@@ -1,5 +1,26 @@
 <?php
 require_once '../db.php';
+session_start();
+
+// Проверка наличия GET-параметра page
+$page = $_GET['page'] ?? null;
+
+if ($page === 'courses') {
+    // Проверка, авторизован ли пользователь
+    if (!isset($_SESSION['user'])) {
+        header('Location: /client/');
+        exit();
+    }
+
+    // Дополнительная проверка на администратора (если нужно)
+    if ($_SESSION['user']['group'] != 1) {
+        echo "У вас нет доступа к этой странице.";
+        exit();
+    }
+} else {
+	header('Location: /client/');
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (isset($_POST['add_course'])) {
 		$name = $_POST['name'];

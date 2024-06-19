@@ -2,6 +2,8 @@
 require_once '../db.php';
 session_start();
 
+$page = $_GET['page'] ?? null;
+
 if (!isset($_SESSION['user'])) {
 	header('Location: /client/');
 	exit();

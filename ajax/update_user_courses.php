@@ -2,6 +2,8 @@
 session_start();
 require_once '../db.php';
 
+header('Content-Type: application/json');
+
 // Проверка авторизации и роли администратора
 if (!isset($_SESSION['user']) || $_SESSION['user']['group'] != 1) {
     header('HTTP/1.0 403 Forbidden');
@@ -18,11 +20,12 @@ if (!$tableExists) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userId = $_POST['user_id'];
-    $courses = implode(',', $_POST['courses']);
+    $courses = isset($_POST['courses']) ? implode(',', $_POST['courses']) : '';
 
     $stmt = $pdo->prepare('UPDATE users SET courses = ? WHERE id = ?');
     $stmt->execute([$courses, $userId]);
 
     echo json_encode(['success' => true]);
+    exit();
 }
 ?>

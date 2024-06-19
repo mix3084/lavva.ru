@@ -1,9 +1,9 @@
 <?php
+session_start();
 $title = "Личный кабинет";
 $description = "ХУЙНЯ.";
 
 include '../header.php';
-session_start();
 if (!isset($_SESSION['user'])) : ?>
 <!-- шапка Start -->
 <div class="container-fluid bg-primary py-5 mb-5 page-header">
@@ -73,9 +73,16 @@ if (!isset($_SESSION['user'])) : ?>
 <div class="content-page">
 	<div class="content">
 		<div class="container-fluid p-3">
-			<?php
+        <?php
 				$page = $_GET['page'] ?? 'profile';
-				include $page . '.php';
+
+				// Проверка доступа администратора к страницам
+				$admin_pages = ['users', 'courses']; // страницы, доступные только администратору
+				if (in_array($page, $admin_pages) && $user['group'] != 1) {
+					echo "У вас нет доступа к этой странице.";
+				} else {
+					include $page . '.php';
+				}
 			?>
 		</div>
 	</div>
