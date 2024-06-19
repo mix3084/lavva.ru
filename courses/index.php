@@ -1,6 +1,6 @@
 <?php
-	$title = "Отзывы";
-	$description = "ХУЙНЯ.";
+	$title = "Курсы";
+	$description = "Наши курсы, по все вопросам обращаться к администратору";
 
 	include '../header.php';
 ?>
