@@ -11,8 +11,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['group'] != 1) {
     exit();
 }
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response = ['success' => false, 'message' => 'Произошла ошибка'];
     if (isset($_POST['action'])) {
@@ -20,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
             $stmt = $pdo->prepare('INSERT INTO courses (name) VALUES (?)');
             if ($stmt->execute([$name])) {
-                $response['success'] = true;
-                $response['message'] = 'Курс добавлен';
-                $response['id'] = $pdo->lastInsertId();
-                $response['name'] = $name;
+                $response['success']    = true;
+                $response['message']    = 'Курс добавлен';
+                $response['id']         = $pdo->lastInsertId();
+                $response['name']       = $name;
             }
         } elseif ($_POST['action'] === 'delete_course') {
             $courseId = $_POST['course_id'];

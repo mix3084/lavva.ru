@@ -21,10 +21,10 @@ if ($action == 'login') {
 		echo json_encode(['success' => false, 'message' => 'Неверный email/логин или пароль.']);
 	}
 } elseif ($action == 'register') {
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$login = $_POST['login'];
-	$password = md5($_POST['password']); // Использование MD5 для хэширования паролей
+	$name 		= $_POST['name'];
+	$email 		= $_POST['email'];
+	$login 		= $_POST['login'];
+	$password 	= md5($_POST['password']); // Использование MD5 для хэширования паролей
 
 	// Проверка на существование пользователя с таким же email или логином
 	$stmt = $pdo->prepare('SELECT * FROM users WHERE mail = ? OR login = ?');

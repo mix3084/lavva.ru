@@ -64,22 +64,20 @@ if ($user['group'] == 1) {
 	</form>
 <?php endif; ?>
 <ul class="list-group">
-	<?php if ($lessons): ?>
-		<?php foreach ($lessons as $lesson): ?>
-			<li class="list-group-item d-flex justify-content-between align-items-center" data-id="<?php echo $lesson['id']; ?>">
-				<?php echo htmlspecialchars($lesson['name']) . ' (' . htmlspecialchars($lesson['course_name']) . ')'; ?>
-				<?php 
-					$filePath = htmlspecialchars($lesson['file_path']);
-					$fileInfo = pathinfo($filePath);
-					$fileExtension = isset($fileInfo['extension']) ? $fileInfo['extension'] : '';
-				?>
-				<a href="<?php echo $filePath; ?>" class="btn btn-info btn-sm ms-auto" download="<?php echo sanitizeFileName($lesson['name']) . '.' . $fileExtension; ?>">Скачать</a>
-				<?php if ($user['group'] == 1): ?>
-					<button class="btn btn-danger btn-sm ms-2 delete-lesson" data-id="<?php echo $lesson['id']; ?>">Удалить</button>
-				<?php endif; ?>
-			</li>
-		<?php endforeach; ?>
-	<?php else: ?>
+	<?php if ($lessons): foreach ($lessons as $lesson): ?>
+	<li class="list-group-item d-flex justify-content-between align-items-center" data-id="<?php echo $lesson['id']; ?>">
+		<?php echo htmlspecialchars($lesson['name']) . ' (' . htmlspecialchars($lesson['course_name']) . ')'; ?>
+		<?php 
+			$filePath = htmlspecialchars($lesson['file_path']);
+			$fileInfo = pathinfo($filePath);
+			$fileExtension = isset($fileInfo['extension']) ? $fileInfo['extension'] : '';
+		?>
+		<a href="<?php echo $filePath; ?>" class="btn btn-info btn-sm ms-auto" download="<?php echo sanitizeFileName($lesson['name']) . '.' . $fileExtension; ?>">Скачать</a>
+		<?php if ($user['group'] == 1): ?>
+			<button class="btn btn-danger btn-sm ms-2 delete-lesson" data-id="<?php echo $lesson['id']; ?>">Удалить</button>
+		<?php endif; ?>
+	</li>
+	<?php endforeach; else: ?>
 		<li class="list-group-item justify-content-between align-items-center js-lessons-not">Лекций нет</li>
 	<?php endif; ?>
 </ul>

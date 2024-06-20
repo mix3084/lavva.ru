@@ -37,7 +37,7 @@ const App = {
 				if (response.success) {
 					setTimeout(()=>{
 						location.reload();
-					},1000);
+					},1000); // 1000 мс = 1 сек.
 				}
 			}
 		});
@@ -58,9 +58,11 @@ const App = {
 				loginInput,
 				password
 			},
-			success: function(response) {
-				$('#loginMessage').text(response.message);
-				if (response.success) {
+			success: response => {
+				const { success, message } = response
+
+				$('#loginMessage').text(message);
+				if (success) {
 					setTimeout(()=>{
 						location.reload(); // Перезагрузка страницы при успешном входе
 					},1000);

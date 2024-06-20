@@ -26,11 +26,15 @@
 #spinner {
     opacity: 0;
     visibility: hidden;
+    -webkit-transition: opacity .5s ease-out, visibility 0s linear .5s;
+    -o-transition: opacity .5s ease-out, visibility 0s linear .5s;
     transition: opacity .5s ease-out, visibility 0s linear .5s;
     z-index: 99999;
 }
 
 #spinner.show {
+    -webkit-transition: opacity .5s ease-out, visibility 0s linear 0s;
+    -o-transition: opacity .5s ease-out, visibility 0s linear 0s;
     transition: opacity .5s ease-out, visibility 0s linear 0s;
     visibility: visible;
     opacity: 1;
@@ -41,6 +45,8 @@
 .btn {
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
     transition: .5s;
 }
 
@@ -68,9 +74,15 @@
 .btn-sm-square,
 .btn-lg-square {
     padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     font-weight: normal;
     border-radius: 0px;
 }
@@ -123,6 +135,8 @@
 
 .navbar-light.sticky-top {
     top: -100px;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
     transition: .5s;
 }
 
@@ -132,19 +146,27 @@
         margin-top: 0;
         opacity: 0;
         visibility: hidden;
+        -webkit-transition: .5s;
+        -o-transition: .5s;
         transition: .5s;
     }
 
     .navbar .dropdown-menu.fade-down {
         top: 100%;
-        transform: rotateX(-75deg);
-        transform-origin: 0% 0%;
+        -webkit-transform: rotateX(-75deg);
+                transform: rotateX(-75deg);
+        -webkit-transform-origin: 0% 0%;
+            -ms-transform-origin: 0% 0%;
+                transform-origin: 0% 0%;
     }
 
     .navbar .nav-item:hover .dropdown-menu {
         top: 100%;
-        transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
+                transform: rotateX(0deg);
         visibility: visible;
+        -webkit-transition: .5s;
+        -o-transition: .5s;
         transition: .5s;
         opacity: 1;
     }
@@ -162,7 +184,8 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        -o-object-fit: cover;
+           object-fit: cover;
     }
 }
 
@@ -170,9 +193,16 @@
     position: absolute;
     top: 50%;
     right: 8%;
-    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .header-carousel .owl-nav .owl-prev,
@@ -180,13 +210,21 @@
     margin: 7px 0;
     width: 45px;
     height: 45px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     color: #FFFFFF;
     background: transparent;
     border: 1px solid #FFFFFF;
     font-size: 22px;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
     transition: .5s;
 }
 
@@ -197,6 +235,8 @@
 }
 
 .page-header {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(24, 29, 56, .7)), to(rgba(24, 29, 56, .7))), url(../img/carousel-1.jpg);
+    background: -o-linear-gradient(rgba(24, 29, 56, .7), rgba(24, 29, 56, .7)), url(../img/carousel-1.jpg);
     background: linear-gradient(rgba(24, 29, 56, .7), rgba(24, 29, 56, .7)), url(../img/carousel-1.jpg);
     background-position: center center;
     background-repeat: no-repeat;
@@ -255,6 +295,8 @@
 /*** Service ***/
 .service-item {
     background: var(--light);
+    -webkit-transition: .5s;
+    -o-transition: .5s;
     transition: .5s;
 }
 
@@ -264,6 +306,8 @@
 }
 
 .service-item * {
+    -webkit-transition: .5s;
+    -o-transition: .5s;
     transition: .5s;
 }
 
@@ -275,22 +319,30 @@
 /*** Categories & Courses ***/
 .category img,
 .course-item img {
+    -webkit-transition: .5s;
+    -o-transition: .5s;
     transition: .5s;
 }
 
 .category a:hover img,
 .course-item:hover img {
-    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
 }
 
 
 /*** Team ***/
 .team-item img {
+    -webkit-transition: .5s;
+    -o-transition: .5s;
     transition: .5s;
 }
 
 .team-item:hover img {
-    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
 }
 
 
@@ -302,6 +354,8 @@
     left: 0;
     height: 100%;
     width: 0;
+    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, 0)));
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
     background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
     z-index: 1;
 }
@@ -313,6 +367,8 @@
     right: 0;
     height: 100%;
     width: 0;
+    background: -webkit-gradient(linear, right top, left top, from(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, 0)));
+    background: -o-linear-gradient(right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
     background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
     z-index: 1;
 }
@@ -333,6 +389,8 @@
 
 .testimonial-carousel .owl-item .testimonial-text,
 .testimonial-carousel .owl-item.center .testimonial-text * {
+    -webkit-transition: .5s;
+    -o-transition: .5s;
     transition: .5s;
 }
 
@@ -346,9 +404,15 @@
 
 .testimonial-carousel .owl-dots {
     margin-top: 24px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .testimonial-carousel .owl-dot {
@@ -358,6 +422,8 @@
     width: 15px;
     height: 15px;
     border: 1px solid #CCCCCC;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
     transition: .5s;
 }
 
@@ -372,13 +438,21 @@
     margin-right: 5px;
     width: 35px;
     height: 35px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     color: var(--light);
     font-weight: normal;
     border: 1px solid #FFFFFF;
     border-radius: 35px;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
     transition: .3s;
 }
 
@@ -395,6 +469,8 @@
     font-size: 15px;
     font-weight: normal;
     text-transform: capitalize;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
     transition: .3s;
 }
 
@@ -408,7 +484,8 @@
 
 .footer .btn.btn-link:hover {
     letter-spacing: 1px;
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
 }
 
 .footer .copyright {
@@ -443,8 +520,11 @@
     padding-bottom: calc(60px + 0.75rem);
     padding-top: 60px;
     background: white;
-    box-shadow: 0px 0px 35px 0px rgba(154, 161, 171, 0.15);
+    -webkit-box-shadow: 0px 0px 35px 0px rgba(154, 161, 171, 0.15);
+            box-shadow: 0px 0px 35px 0px rgba(154, 161, 171, 0.15);
     border-right: 1px solid #dee2e6;
+    -webkit-transition: all .25s ease-in-out;
+    -o-transition: all .25s ease-in-out;
     transition: all .25s ease-in-out;
 }
 
@@ -453,5 +533,7 @@
     margin-left: 260px;
     min-height: calc(100vh - 555px);
     padding: 0 0.75rem 60px;
+    -webkit-transition: all .25s ease-in-out;
+    -o-transition: all .25s ease-in-out;
     transition: all .25s ease-in-out;
 }
