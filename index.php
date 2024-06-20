@@ -16,7 +16,7 @@
                             <h1 class="display-3 text-white animated slideInDown">одна из конкурентоспособных онлайн платформ</h1>
                             <p class="fs-5 text-white mb-4 pb-2">Чтобы добраться до поверхности льда, нерпы обзавелись толстыми и острыми когтями. По ним, кстати, можно подсчитать возраст животного: на когтях при линьке появляются годовые насечки. </p>
                             <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Подробнее</a>
-                            <a href="#" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Зарегистрироваться</a>
+                            <a href="/client/" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Зарегистрироваться</a>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                             <h1 class="display-3 text-white animated slideInDown">Повышай свою квалификацию и уровень знаний не выходя из дома</h1>
                             <p class="fs-5 text-white mb-4 pb-2">Нерпы обладают врожденным инстинктом — зимой они разгребают лед снизу и делают продухи. Через эти отверстия животные дышат.</p>
                             <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Подробнее</a>
-                            <a href="#" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Зарегистрироваться</a>
+                            <a href="/client/" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Зарегистрироваться</a>
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                         <img class="img-fluid" src="/assets/img/course-1.jpg" alt="">
                         <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                             <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Подробнее</a>
-                            <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Зарегистрироваться!</a>
+                            <a href="/client/" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Зарегистрироваться!</a>
                         </div>
                     </div>
                     <div class="text-center p-4 pb-0">
@@ -220,7 +220,7 @@
                         <img class="img-fluid" src="/assets/img/course-2.jpg" alt="">
                         <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                             <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Подробнее</a>
-                            <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Зарегистрироваться</a>
+                            <a href="/client/" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Зарегистрироваться</a>
                         </div>
                     </div>
                     <div class="text-center p-4 pb-0">
@@ -248,7 +248,7 @@
                         <img class="img-fluid" src="/assets/img/course-3.jpg" alt="">
                         <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                             <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Подробнее</a>
-                            <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Зарегистрироваться</a>
+                            <a href="/client/" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Зарегистрироваться</a>
                         </div>
                     </div>
                     <div class="text-center p-4 pb-0">
