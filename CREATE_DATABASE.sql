@@ -55,9 +55,3 @@ INSERT INTO courses (name) VALUES
 ('HTML и CSS'),
 ('JavaScript'),
 ('Книги');
-
--- Вставка данных в таблицу lessons
-INSERT INTO lessons (course_id, name, file_path) VALUES
-(1, 'Заключение', '/uploads/Заключение.mp4'),
-(2, 'Настройка рабочего пространства', '/uploads/Список необходимых плагинов.docx'),
-(3, 'Изучаем HTML, XHTML и CSS Эрик Фримен', '/uploads/Изучаем HTML, XHTML и CSS Эрик Фримен.pdf'),
