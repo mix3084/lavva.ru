@@ -1,6 +1,6 @@
 <?php
 	$title = "База знаний Лавришин эл.обучение";
-	$description = "ХУЙНЯ.";
+	$description = "Лучшие курсы без смс и регистрации";
 	include 'header.php';
 ?>
 <!-- Движущийся элемент Start -->
@@ -15,8 +15,8 @@
                             <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Лучшие курсы без смс и регистрации</h5>
                             <h1 class="display-3 text-white animated slideInDown">одна из конкурентоспособных онлайн платформ</h1>
                             <p class="fs-5 text-white mb-4 pb-2">Чтобы добраться до поверхности льда, нерпы обзавелись толстыми и острыми когтями. По ним, кстати, можно подсчитать возраст животного: на когтях при линьке появляются годовые насечки. </p>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Подробнее</a>
-                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Зарегистрироваться</a>
+                            <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Подробнее</a>
+                            <a href="#" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Зарегистрироваться</a>
                         </div>
                     </div>
                 </div>
@@ -31,8 +31,8 @@
                             <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Один из лучших онлайн курсов</h5>
                             <h1 class="display-3 text-white animated slideInDown">Повышай свою квалификацию и уровень знаний не выходя из дома</h1>
                             <p class="fs-5 text-white mb-4 pb-2">Нерпы обладают врожденным инстинктом — зимой они разгребают лед снизу и делают продухи. Через эти отверстия животные дышат.</p>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Подробнее</a>
-                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Зарегистрироваться</a>
+                            <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Подробнее</a>
+                            <a href="#" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Зарегистрироваться</a>
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                         <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Грамоты</p>
                     </div>
                 </div>
-                <a class="btn btn-primary py-3 px-5 mt-2" href="">Подробнее</a>
+                <a class="btn btn-primary py-3 px-5 mt-2" href="#">Подробнее</a>
             </div>
         </div>
     </div>
@@ -137,7 +137,7 @@
             <div class="col-lg-7 col-md-6">
                 <div class="row g-3">
                     <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
-                        <a class="position-relative d-block overflow-hidden" href="">
+                        <a class="position-relative d-block overflow-hidden" href="#">
                             <img class="img-fluid" src="/assets/img/cat-1.jpg" alt="">
                             <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
                                 <h5 class="m-0">Web Design</h5>
@@ -146,7 +146,7 @@
                         </a>
                     </div>
                     <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
-                        <a class="position-relative d-block overflow-hidden" href="">
+                        <a class="position-relative d-block overflow-hidden" href="#">
                             <img class="img-fluid" src="/assets/img/cat-2.jpg" alt="">
                             <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
                                 <h5 class="m-0">Graphic Design</h5>
@@ -155,7 +155,7 @@
                         </a>
                     </div>
                     <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
-                        <a class="position-relative d-block overflow-hidden" href="">
+                        <a class="position-relative d-block overflow-hidden" href="#">
                             <img class="img-fluid" src="/assets/img/cat-3.jpg" alt="">
                             <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
                                 <h5 class="m-0">Video Editing</h5>
@@ -166,7 +166,7 @@
                 </div>
             </div>
             <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
-                <a class="position-relative d-block h-100 overflow-hidden" href="">
+                <a class="position-relative d-block h-100 overflow-hidden" href="#">
                     <img class="img-fluid position-absolute w-100 h-100" src="/assets/img/cat-4.jpg" alt="" style="object-fit: cover;">
                     <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
                         <h5 class="m-0">Online Marketing</h5>
@@ -289,9 +289,9 @@
                     </div>
                     <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                         <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="text-center p-4">
@@ -307,9 +307,9 @@
                     </div>
                     <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                         <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="text-center p-4">
@@ -325,9 +325,9 @@
                     </div>
                     <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                         <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="text-center p-4">
@@ -343,9 +343,9 @@
                     </div>
                     <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                         <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="text-center p-4">

@@ -98,18 +98,21 @@ const App = {
 
     // Обновление профиля
 	updateProfile: function(e) {
+		const name = $('#name').val();
+
 		e.preventDefault();
 		$.ajax({
 			url: '/client/profile.php',
 			type: 'POST',
 			data: {
 				action: 'update_profile',
-				name: 	$('#name').val()
+				name
 			},
 			dataType: 'json',
 			success: function(response) {
 				let message = $('#profileMessage');
 				message.text(response.message);
+				$('#username').text(name)
 				message.removeClass('alert-success alert-danger').addClass(response.success ? 'alert alert-success' : 'alert alert-danger');
 			}
 		});
@@ -316,12 +319,12 @@ const App = {
         formData.append('action', 'add_lesson'); // Добавляем действие
 
         $.ajax({
-            url: '/ajax/lessons.php', // URL для отправки данных
-            type: 'POST', // Метод HTTP-запроса
-            data: formData, // Данные формы
-            processData: false, // Отключаем обработку данных
-            contentType: false, // Отключаем установку типа контента
-            dataType: 'json', // Ожидаемый тип данных от сервера
+            url: '/ajax/lessons.php', 	// URL для отправки данных
+            type: 'POST', 				// Метод HTTP-запроса
+            data: formData, 			// Данные формы
+            processData: false, 		// Отключаем обработку данных
+            contentType: false, 		// Отключаем установку типа контента
+            dataType: 'json', 			// Ожидаемый тип данных от сервера
             success: function(response) {
                 if (response.success) {
                     const lesson = response.lesson; // Получаем данные добавленной лекции
@@ -332,37 +335,37 @@ const App = {
                             <button class="btn btn-danger btn-sm ms-2 delete-lesson" data-id="${lesson.id}">Удалить</button>
                         </li>
                     `;
-                    $('.list-group').append(lessonItem); // Добавляем новую лекцию в список
-                    $('#addLessonForm')[0].reset(); // Сбрасываем форму
-                    App.checkLessons(); // Проверяем наличие лекций
+                    $('.list-group').append(lessonItem); 	// Добавляем новую лекцию в список
+                    $('#addLessonForm')[0].reset(); 		// Сбрасываем форму
+                    App.checkLessons(); 					// Проверяем наличие лекций
                 } else {
-                    alert(response.message); // Сообщаем об ошибке
+                    alert(response.message); 				// Сообщаем об ошибке
                 }
             },
             error: function() {
-                alert('Ошибка при добавлении лекции.'); // Сообщаем о проблеме с запросом
+                alert('Ошибка при добавлении лекции.'); 	// Сообщаем о проблеме с запросом
             }
         });
     },
 
 	// Удаление лекции
     deleteLesson: function(e) {
-        const lessonId = $(e.target).data('id'); // Получаем ID лекции
+        const lesson_id = $(e.target).data('id'); // Получаем ID лекции
 
         $.ajax({
-            url: '/ajax/lessons.php', // URL для отправки данных
-            type: 'POST', // Метод HTTP-запроса
+            url: '/ajax/lessons.php', 	// URL для отправки данных
+            type: 'POST', 				// Метод HTTP-запроса
             data: {
                 action: 'delete_lesson',
-                lesson_id: lessonId // ID лекции для удаления
+                lesson_id 				// ID лекции для удаления
             },
-            dataType: 'json', // Ожидаемый тип данных от сервера
+            dataType: 'json', 			// Ожидаемый тип данных от сервера
             success: function(response) {
                 if (response.success) {
-                    $(`li[data-id="${lessonId}"]`).remove(); // Удаляем элемент списка
-                    App.checkLessons(); // Проверяем наличие лекций
+                    $(`li[data-id="${lesson_id}"]`).remove(); 	// Удаляем элемент списка
+                    App.checkLessons(); 						// Проверяем наличие лекций
                 } else {
-                    alert(response.message); // Сообщаем об ошибке
+                    alert(response.message); 					// Сообщаем об ошибке
                 }
             },
             error: function() {
@@ -373,11 +376,11 @@ const App = {
 
 	// Очистка и безопасное название файла
     sanitizeFileName: function(filename, maxLength = 100) {
-        filename = filename.replace(/[^A-Za-zА-Яа-я0-9\- ]/g, ''); // Удаляем запрещенные символы
+        filename = filename.replace(/[^A-Za-zА-Яа-я0-9\- ]/g, ''); 	// Удаляем запрещенные символы
         if (filename.length > maxLength) {
-            filename = filename.substring(0, maxLength); // Обрезаем строку до максимальной длины
+            filename = filename.substring(0, maxLength); 			// Обрезаем строку до максимальной длины
         }
-        filename = filename.trim().replace(/\s+/g, '_'); // Заменяем пробелы на подчеркивания
+        filename = filename.trim().replace(/\s+/g, '_'); 			// Заменяем пробелы на подчеркивания
         return filename;
     },
 	

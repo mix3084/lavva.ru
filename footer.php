@@ -5,11 +5,11 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Быстрый Путь</h4>
-                    <a class="btn btn-link" href="">О нас</a>
-                    <a class="btn btn-link" href="">Связаться с нами</a>
-                    <a class="btn btn-link" href="">Политика конфидециальности</a>
-                    <a class="btn btn-link" href="">Правила и условия</a>
-                    <a class="btn btn-link" href="">Часто задаваемые вопросы и поддержка</a>
+                    <a class="btn btn-link" href="#">О нас</a>
+                    <a class="btn btn-link" href="#">Связаться с нами</a>
+                    <a class="btn btn-link" href="#">Политика конфидециальности</a>
+                    <a class="btn btn-link" href="#">Правила и условия</a>
+                    <a class="btn btn-link" href="#">Часто задаваемые вопросы и поддержка</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Контакты</h4>
@@ -17,10 +17,10 @@
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+7-976-532-32-34</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>Lavr@example.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -64,10 +64,10 @@
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
-                            <a href="">Главная</a>
-                            <a href="">Данные</a>
-                            <a href="">Помощь</a>
-                            <a href="">Зачет?</a>
+                            <a href="#">Главная</a>
+                            <a href="#">Данные</a>
+                            <a href="#">Помощь</a>
+                            <a href="#">Зачет?</a>
                         </div>
                     </div>
                 </div>
