@@ -1,5 +1,6 @@
 <?php
-session_start();
-session_destroy();
-header('Location: index.php');
-exit();
+session_start();                // Начинаем сессию
+session_destroy();              // Уничтожаем текущую сессию, удаляя все данные сессии
+header('Location: index.php');  // Перенаправляем пользователя на главную страницу
+exit();                         // Останавливаем выполнение скрипта
+?>

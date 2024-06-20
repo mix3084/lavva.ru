@@ -1,37 +1,39 @@
 <?php
-require_once '../db.php';
-session_start();
+require_once '../db.php'; 	// Подключаем файл для работы с базой данных
+session_start(); 			// Начинаем сессию
 
-$page = $_GET['page'] ?? null;
+$page = $_GET['page'] ?? null; // Получаем параметр 'page' из URL, если он существует
 
+// Проверяем, если пользователь не авторизован, перенаправляем на страницу клиента
 if (!isset($_SESSION['user'])) {
 	header('Location: /client/');
 	exit();
 }
 
-$user = $_SESSION['user'];
+$user = $_SESSION['user']; // Получаем информацию о пользователе из сессии
 
+// Обработка POST-запросов
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$response = ['success' => false, 'message' => ''];
+	$response = ['success' => false, 'message' => '']; // Инициализируем массив ответа
 
 	if (isset($_POST['action'])) {
-		if ($_POST['action'] === 'update_profile') {
-			$name = $_POST['name'];
+		if ($_POST['action'] === 'update_profile') { // Обновление профиля пользователя
+			$name 	= $_POST['name'];
 			$userId = $user['id'];
 
-			$query = 'UPDATE users SET name = ? WHERE id = ?';
+			$query 	= 'UPDATE users SET name = ? WHERE id = ?';
 			$params = [$name, $userId];
 
-			$stmt = $pdo->prepare($query);
-			$stmt->execute($params);
+			$stmt = $pdo->prepare($query); 	// Подготавливаем запрос
+			$stmt->execute($params); 		// Выполняем запрос
 
-			$_SESSION['user']['name'] = $name;
+			$_SESSION['user']['name'] = $name; // Обновляем имя в сессии
 
 			$response['success'] = true;
 			$response['message'] = 'Профиль обновлен';
-		} elseif ($_POST['action'] === 'update_password') {
-			$oldPassword = md5($_POST['old_password']);
-			$newPassword = md5($_POST['new_password']);
+		} elseif ($_POST['action'] === 'update_password') { // Обновление пароля пользователя
+			$oldPassword = md5($_POST['old_password']); // Хешируем старый пароль
+			$newPassword = md5($_POST['new_password']); // Хешируем новый пароль
 			$userId = $user['id'];
 
 			// Проверка старого пароля
@@ -39,14 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$stmt->execute([$userId]);
 			$existingPassword = $stmt->fetchColumn();
 
-			if ($existingPassword !== $oldPassword) {
+			if ($existingPassword !== $oldPassword) { // Если старый пароль неверен
 				$response['message'] = 'Старый пароль введен неправильно';
-			} else {
-				$query = 'UPDATE users SET password = ? WHERE id = ?';
+			} else { // Если старый пароль верен, обновляем пароль
+				$query 	= 'UPDATE users SET password = ? WHERE id = ?';
 				$params = [$newPassword, $userId];
 
-				$stmt = $pdo->prepare($query);
-				$stmt->execute($params);
+				$stmt = $pdo->prepare($query); 	// Подготавливаем запрос
+				$stmt->execute($params); 		// Выполняем запрос
 
 				$response['success'] = true;
 				$response['message'] = 'Пароль успешно изменен';
@@ -54,11 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 	}
 
-	echo json_encode($response);
-	exit();
+	echo json_encode($response); 	// Возвращаем ответ в формате JSON
+	exit(); 						// Останавливаем выполнение скрипта
 }
 ?>
-
 <h2>Профиль</h2>
 <form id="profileForm" method="post">
 	<div class="mb-3">

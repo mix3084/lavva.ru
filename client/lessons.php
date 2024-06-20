@@ -1,38 +1,43 @@
 <?php
-require_once '../db.php';
-session_start();
-$page = $_GET['page'] ?? null;
+require_once '../db.php'; 		// Подключаем файл для работы с базой данных
+session_start(); 				// Начинаем сессию
+$page = $_GET['page'] ?? null; 	// Получаем параметр 'page' из URL, если он существует
 
+// Проверяем, если 'page' не равно 'lessons', перенаправляем на страницу клиента
 if ($page !== 'lessons') {
     header('Location: /client/');
     exit();
 }
 
+// Функция для очистки имени файла от запрещенных символов и ограничения длины
 function sanitizeFileName($filename, $maxLength = 100) {
-    $filename = preg_replace('/[^A-Za-zА-Яа-я0-9\- ]/u', '', $filename);
+    $filename = preg_replace('/[^A-Za-zА-Яа-я0-9\- ]/u', '', $filename); // Удаляем все запрещенные символы, поддерживаем кириллицу
     if (strlen($filename) > $maxLength) {
-        $filename = mb_substr($filename, 0, $maxLength);
+        $filename = mb_substr($filename, 0, $maxLength); // Обрезаем строку до указанной длины
     }
-    $filename = trim($filename);
-    $filename = str_replace(' ', '_', $filename);
+    $filename = trim($filename); 					// Убираем начальные и конечные пробелы
+    $filename = str_replace(' ', '_', $filename); 	// Заменяем пробелы на подчеркивания
     return $filename;
 }
 
-$user = $_SESSION['user'];
+$user = $_SESSION['user']; // Получаем информацию о пользователе из сессии
 
+// Получаем все курсы из базы данных
 $courses = $pdo->query('SELECT * FROM courses')->fetchAll();
 
+// Если пользователь является администратором, получаем все лекции
 if ($user['group'] == 1) {
     $lessons = $pdo->query('SELECT lessons.*, courses.name AS course_name FROM lessons JOIN courses ON lessons.course_id = courses.id')->fetchAll();
 } else {
-    $userCourses = explode(',', $user['courses']);
+    // Если пользователь не администратор, получаем только те лекции, которые относятся к курсам пользователя
+    $userCourses = explode(',', $user['courses']); // Преобразуем строку с курсами пользователя в массив
     if (!empty($userCourses)) {
-        $placeholders = implode(',', array_fill(0, count($userCourses), '?'));
-        $stmt = $pdo->prepare("SELECT lessons.*, courses.name AS course_name FROM lessons JOIN courses ON lessons.course_id = courses.id WHERE lessons.course_id IN ($placeholders)");
-        $stmt->execute($userCourses);
-        $lessons = $stmt->fetchAll();
+        $placeholders = implode(',', array_fill(0, count($userCourses), '?')); // Создаем строку плейсхолдеров для подготовленного запроса
+        $stmt = $pdo->prepare("SELECT lessons.*, courses.name AS course_name FROM lessons JOIN courses ON lessons.course_id = courses.id WHERE lessons.course_id IN ($placeholders)"); 				// Подготавливаем запрос
+        $stmt->execute($userCourses); 	// Выполняем запрос с параметрами
+        $lessons = $stmt->fetchAll(); 	// Получаем результаты
     } else {
-        $lessons = [];
+        $lessons = []; // Если у пользователя нет курсов, инициализируем пустой массив для лекций
     }
 }
 ?>

@@ -1,25 +1,28 @@
 const App = {
+	// Инициализация приложения
 	init: function() {
-		this.bindEvents();
-		this.loadUsers();
+		this.bindEvents(); 	// Привязка событий
+		this.loadUsers(); 	// Загрузка пользователей
 	},
 	
+	// Привязка событий к элементам
 	bindEvents: function() {
-		$('#loginForm').on('submit', this.handleLogin);
-		$('#registerForm').on('submit', this.handleRegister);
-		$('#profileForm').on('submit', this.updateProfile);
-		$('#passwordForm').on('submit', this.updatePassword);
-		$(document).on('submit', '.editUserForm', this.updateUserCourses);
-		$(document).on('submit', '#addCourseForm', this.addCourse);
-		$(document).on('click', '.delete-course', this.deleteCourse);
-		$('#addLessonForm').on('submit', this.addLesson.bind(this));
-        $(document).on('click', '.delete-lesson', this.deleteLesson.bind(this));
+		$('#loginForm').on('submit', 	this.handleLogin); 							// Событие для формы входа
+		$('#registerForm').on('submit', this.handleRegister); 						// Событие для формы регистрации
+		$('#profileForm').on('submit', 	this.updateProfile); 						// Событие для обновления профиля
+		$('#passwordForm').on('submit', this.updatePassword); 						// Событие для обновления пароля
+		$(document).on('submit', '.editUserForm', 	this.updateUserCourses); 		// Событие для обновления курсов пользователя
+		$(document).on('submit', '#addCourseForm', 	this.addCourse); 				// Событие для добавления курса
+		$(document).on('click', '.delete-course', 	this.deleteCourse); 			// Событие для удаления курса
+		$('#addLessonForm').on('submit', 			this.addLesson.bind(this)); 	// Событие для добавления лекции
+        $(document).on('click', '.delete-lesson', 	this.deleteLesson.bind(this)); 	// Событие для удаления лекции
 	},
 	
 	handleLogin: function(e) {
 		e.preventDefault();
-		let loginInput  = $('#loginInput').val();
-		let password = $('#loginPassword').val();
+		const 
+			loginInput  = $('#loginInput').val(),
+			password 	= $('#loginPassword').val();
 		
 		$.ajax({
 			url: '/ajax/auth.php',
@@ -33,19 +36,47 @@ const App = {
 				$('#loginMessage').text(response.message);
 				if (response.success) {
 					setTimeout(()=>{
-						location.reload(); // Reload the page on success
+						location.reload();
 					},1000);
 				}
 			}
 		});
 	},
 	
+	// Обработка входа
+	handleLogin: function(e) {
+		e.preventDefault();
+		const 
+			loginInput  = $('#loginInput').val(),
+			password 	= $('#loginPassword').val();
+		
+		$.ajax({
+			url: '/ajax/auth.php',
+			type: 'POST',
+			data: {
+				action: 'login',
+				loginInput,
+				password
+			},
+			success: function(response) {
+				$('#loginMessage').text(response.message);
+				if (response.success) {
+					setTimeout(()=>{
+						location.reload(); // Перезагрузка страницы при успешном входе
+					},1000);
+				}
+			}
+		});
+	},
+
+    // Обработка регистрации
 	handleRegister: function(e) {
 		e.preventDefault();
-		let name = $('#registerName').val();
-		let email = $('#registerEmail').val();
-		let login = $('#registerLogin').val();
-		let password = $('#registerPassword').val();
+		const 
+			name 		= $('#registerName').val(),
+			email 		= $('#registerEmail').val(),
+			login 		= $('#registerLogin').val(),
+			password 	= $('#registerPassword').val();
 		
 		$.ajax({
 			url: '/ajax/auth.php',
@@ -60,11 +91,12 @@ const App = {
 			success: function(response) {
 				$('#registerMessage').text(response.message);
 
-                if (response.success) $(e.currentTarget)[0].reset();
+                if (response.success) $(e.currentTarget)[0].reset(); // Сброс формы при успешной регистрации
 			}
 		});
 	},
-	
+
+    // Обновление профиля
 	updateProfile: function(e) {
 		e.preventDefault();
 		$.ajax({
@@ -72,7 +104,7 @@ const App = {
 			type: 'POST',
 			data: {
 				action: 'update_profile',
-				name: $('#name').val()
+				name: 	$('#name').val()
 			},
 			dataType: 'json',
 			success: function(response) {
@@ -82,14 +114,16 @@ const App = {
 			}
 		});
 	},
-	
+
+    // Обновление пароля
 	updatePassword: function(e) {
 		e.preventDefault();
-		let oldPassword = $('#old_password').val();
-		let newPassword = $('#new_password').val();
-		let confirmPassword = $('#confirm_password').val();
+		const
+			old_password	= $('#old_password').val(),
+			new_password 	= $('#new_password').val(),
+			confirm_password = $('#confirm_password').val();
 
-		if (newPassword !== confirmPassword) {
+		if (new_password !== confirm_password) {
 			let message = $('#passwordMessage');
 			message.text('Пароли не совпадают');
 			message.removeClass('alert-success').addClass('alert alert-danger');
@@ -101,9 +135,9 @@ const App = {
 			type: 'POST',
 			data: {
 				action: 'update_password',
-				old_password: oldPassword,
-				new_password: newPassword,
-				confirm_password: confirmPassword
+				old_password,
+				new_password,
+				confirm_password
 			},
 			dataType: 'json',
 			success: function(response) {
@@ -111,11 +145,12 @@ const App = {
 				message.text(response.message);
 				message.removeClass('alert-success alert-danger').addClass(response.success ? 'alert alert-success' : 'alert alert-danger');
 				
-				if (response.success) $(e.currentTarget)[0].reset();
+				if (response.success) $(e.currentTarget)[0].reset(); // Сброс формы при успешном обновлении пароля
 			}
 		});
 	},
-	
+
+    // Загрузка пользователей
 	loadUsers: function() {
 		const self = this;
 		if ($('#usersTableBody').length) {
@@ -127,8 +162,7 @@ const App = {
 					if (response.error) {
 						alert(response.error);
 					} else {
-						const users = response.users;
-						const courses = response.courses;
+						const { users, courses } = response;
 		
 						courses.forEach(course => {
 							self.coursesMap[course.id] = course.name;
@@ -169,7 +203,7 @@ const App = {
 										</div>
 									</td>
 								</tr>`;
-							$('#usersTableBody').append(userRow);
+							$('#usersTableBody').append(userRow); // Добавление строки пользователя в таблицу
 						});
 					}
 				},
@@ -180,16 +214,17 @@ const App = {
 		}
 	},
 
+    // Добавление курса
     addCourse: function(e) {
 		e.preventDefault();
-		const courseName = $('#name').val();
+		const name = $('#name').val();
 
 		$.ajax({
 			url: '/ajax/courses.php',
 			type: 'POST',
 			data: {
 				action: 'add_course',
-				name: courseName
+				name
 			},
 			dataType: 'json',
 			success: function(response) {
@@ -200,7 +235,7 @@ const App = {
 							<button class="btn btn-danger btn-sm delete-course">Удалить</button>
 						</li>
 					`);
-					$('#name').val('');
+					$('#name').val(''); // Очистка поля ввода имени курса
 				} else {
 					alert(response.message);
 				}
@@ -208,82 +243,88 @@ const App = {
 		});
 	},
 
+    // Удаление курса
     deleteCourse: function() {
-		const listItem = $(this).closest('li');
-		const courseId = listItem.data('id');
+		const 
+			listItem 	= $(this).closest('li'),
+			course_id 	= listItem.data('id');
 
 		$.ajax({
 			url: '/ajax/courses.php',
 			type: 'POST',
 			data: {
 				action: 'delete_course',
-				course_id: courseId
+				course_id
 			},
 			dataType: 'json',
 			success: function(response) {
 				if (response.success) {
-					listItem.remove();
+					listItem.remove(); // Удаление элемента из списка
 				} else {
 					alert(response.message);
 				}
 			}
 		});
 	},
-	
+
+    // Обновление курсов пользователя
 	updateUserCourses: function(e) {
-		e.preventDefault();
-		const form = $(this);
-		const userId = form.find('input[name="user_id"]').val();
-		const courses = form.find('select[name="courses[]"]').val();
+		e.preventDefault(); // Предотвращаем отправку формы по умолчанию
+		const 
+			form 	= $(this), 										// Текущая форма
+			user_id = form.find('input[name="user_id"]').val(), 	// Получаем ID пользователя
+			courses = form.find('select[name="courses[]"]').val(); 	// Получаем выбранные курсы
 
 		$.ajax({
-			url: '/ajax/update_user_courses.php',
-			type: 'POST',
+			url: '/ajax/update_user_courses.php', // URL для отправки данных
+			type: 'POST', // Метод HTTP-запроса
 			data: {
-				user_id: userId,
-				courses: courses ? courses : []
+				user_id,
+				courses: courses ? courses : [] // Отправляем выбранные курсы или пустой массив
 			},
-			dataType: 'json',
+			dataType: 'json', // Ожидаемый тип данных от сервера
 			success: function(response) {
 				if (response.success) {
-					const coursesText = courses ? courses.map(courseId => App.coursesMap[courseId]).join(', ') : '';
-					$('#userCourses' + userId).text(coursesText);
-					$('#editUserModal' + userId).modal('hide');
+					const coursesText = courses ? courses.map(courseId => App.coursesMap[courseId]).join(', ') : ''; // Формируем строку с названиями курсов
+					$('#userCourses' + user_id).text(coursesText); // Обновляем список курсов пользователя
+					$('#editUserModal' + user_id).modal('hide'); // Закрываем модальное окно
 				} else {
-					alert('Ошибка при обновлении курсов.');
+					alert('Ошибка при обновлении курсов.'); // Сообщаем об ошибке
 				}
 			},
 			error: function() {
-				alert('Ошибка при обработке запроса.');
+				alert('Ошибка при обработке запроса.'); // Сообщаем о проблеме с запросом
 			}
 		});
 	},
 
-    checkLessons: function() {
+	// Проверка наличия лекций
+	checkLessons: function() {
         const html = '<li class="list-group-item justify-content-between align-items-center js-lessons-not">Лекций нет</li>';
 
 		if (!$('.list-group li[data-id]').length) {
-			$('.list-group').append(html)
+			$('.list-group').append(html); // Добавляем сообщение, если лекций нет
 		} else {
-			$('.js-lessons-not').remove();
+			$('.js-lessons-not').remove(); // Убираем сообщение, если лекции есть
 		}
 	},
 
+	// Добавление лекции
     addLesson: function(e) {
-        e.preventDefault();
-        const formData = new FormData($('#addLessonForm')[0]);
-        formData.append('action', 'add_lesson');
+        e.preventDefault(); // Предотвращаем отправку формы по умолчанию
+        const formData = new FormData($('#addLessonForm')[0]); // Создаем объект FormData с данными формы
+        formData.append('action', 'add_lesson'); // Добавляем действие
 
         $.ajax({
-            url: '/ajax/lessons.php',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
+            url: '/ajax/lessons.php', // URL для отправки данных
+            type: 'POST', // Метод HTTP-запроса
+            data: formData, // Данные формы
+            processData: false, // Отключаем обработку данных
+            contentType: false, // Отключаем установку типа контента
+            dataType: 'json', // Ожидаемый тип данных от сервера
             success: function(response) {
                 if (response.success) {
-                    const lesson = response.lesson;
+                    const lesson = response.lesson; // Получаем данные добавленной лекции
                     const lessonItem = `
                         <li class="list-group-item d-flex justify-content-between align-items-center" data-id="${lesson.id}">
                             ${lesson.name} (${lesson.course_name})
@@ -291,53 +332,56 @@ const App = {
                             <button class="btn btn-danger btn-sm ms-2 delete-lesson" data-id="${lesson.id}">Удалить</button>
                         </li>
                     `;
-                    $('.list-group').append(lessonItem);
-                    $('#addLessonForm')[0].reset();
-                    App.checkLessons();
+                    $('.list-group').append(lessonItem); // Добавляем новую лекцию в список
+                    $('#addLessonForm')[0].reset(); // Сбрасываем форму
+                    App.checkLessons(); // Проверяем наличие лекций
                 } else {
-                    alert(response.message);
+                    alert(response.message); // Сообщаем об ошибке
                 }
             },
             error: function() {
-                alert('Ошибка при добавлении лекции.');
+                alert('Ошибка при добавлении лекции.'); // Сообщаем о проблеме с запросом
             }
         });
     },
-    
+
+	// Удаление лекции
     deleteLesson: function(e) {
-        const lessonId = $(e.target).data('id');
+        const lessonId = $(e.target).data('id'); // Получаем ID лекции
 
         $.ajax({
-            url: '/ajax/lessons.php',
-            type: 'POST',
+            url: '/ajax/lessons.php', // URL для отправки данных
+            type: 'POST', // Метод HTTP-запроса
             data: {
                 action: 'delete_lesson',
-                lesson_id: lessonId
+                lesson_id: lessonId // ID лекции для удаления
             },
-            dataType: 'json',
+            dataType: 'json', // Ожидаемый тип данных от сервера
             success: function(response) {
                 if (response.success) {
-                    $(`li[data-id="${lessonId}"]`).remove();
-                    App.checkLessons();
+                    $(`li[data-id="${lessonId}"]`).remove(); // Удаляем элемент списка
+                    App.checkLessons(); // Проверяем наличие лекций
                 } else {
-                    alert(response.message);
+                    alert(response.message); // Сообщаем об ошибке
                 }
             },
             error: function() {
-                alert('Ошибка при удалении лекции.');
+                alert('Ошибка при удалении лекции.'); // Сообщаем о проблеме с запросом
             }
         });
     },
 
+	// Очистка и безопасное название файла
     sanitizeFileName: function(filename, maxLength = 100) {
-        filename = filename.replace(/[^A-Za-zА-Яа-я0-9\- ]/g, '');
+        filename = filename.replace(/[^A-Za-zА-Яа-я0-9\- ]/g, ''); // Удаляем запрещенные символы
         if (filename.length > maxLength) {
-            filename = filename.substring(0, maxLength);
+            filename = filename.substring(0, maxLength); // Обрезаем строку до максимальной длины
         }
-        filename = filename.trim().replace(/\s+/g, '_');
+        filename = filename.trim().replace(/\s+/g, '_'); // Заменяем пробелы на подчеркивания
         return filename;
     },
 	
+	// Карта курсов
 	coursesMap: {}
 };
 

@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost'; // ваш хост
-$db   = 'course_management'; // имя вашей базы данных
-$user = 'root'; // имя пользователя базы данных
-$pass = ''; // пароль пользователя базы данных
+$host = 'localhost'; 			// ваш хост
+$db   = 'course_management'; 	// имя вашей базы данных
+$user = 'root'; 				// имя пользователя базы данных
+$pass = ''; 					// пароль пользователя базы данных
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
